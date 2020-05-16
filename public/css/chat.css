@@ -1,0 +1,150 @@
+@media screen and (max-width: 630px) {
+    .sidebar-container {
+        display: none;
+    }
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #504f50;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+form {
+    padding-bottom: 20px;
+    display: flex;
+}
+
+input {
+    flex: 1;
+    padding: 10px 10px;
+    font-size: 14px;
+    line-height: 24px;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.app-header {
+    height: 60px;
+    padding: 18px 20px;
+    font-size: 20px;
+    background-color: #8423ce;
+    color: #fff;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.app-body {
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar-container {
+    height: 100%;
+    width: 200px;
+    background-color: #efe5f9fa;
+    overflow-y: auto;
+    overflow-x: hidden;
+    color: #8423ce;
+    padding: 20px;
+}
+
+.sidebar-title {
+    font-size: 18px;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.sidebar-user-list-item {
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+
+.chat-container {
+    height: 100%;
+    flex: 1;
+    position: relative;
+    box-sizing: border-box;
+    padding-bottom: 70px;
+    overflow: hidden;
+}
+
+.chat-body {
+    height: 100%;
+    overflow: auto;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.message {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    display: flex;
+    position: relative;
+}
+
+.message-right {
+    justify-content: flex-end;
+}
+
+.message-avatar {
+    position: absolute;
+    top: 15px;
+    background-color: #8423ce;
+    color: #fff;
+    height: 32px;
+    width: 32px;
+    line-height: 32px;
+    border-radius: 50%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.message-avatar-left {
+    left: 0;
+}
+
+.message-avatar-right {
+    right: 0;
+}
+
+.message-bubble {
+    position: relative;
+    padding: 15px 15px 5px;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.09);
+    border-radius: 10px;
+}
+
+.message-footer {
+    font-size: 11px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    color: #9c999c;
+    text-align: right;
+}
+
+.createdAt {
+    margin-left: 5px;
+}
+
+.input-container {
+    position: absolute;
+    bottom: 5px;
+    left: 20px;
+    right: 20px;
+}

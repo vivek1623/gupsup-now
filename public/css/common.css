@@ -1,0 +1,28 @@
+button {
+    padding: 6px 20px;
+    font-size: 15px;
+    background-color: #8423ce;
+    border-color: #8423ce;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ac5aea;
+    border-color: #ac5aea;
+}
+
+button:disabled {
+    background-color: #22262db8;
+    border-color: #22262db8;
+}
+
+.created-by {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: 5px 0px;
+}
