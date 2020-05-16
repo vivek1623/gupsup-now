@@ -3,7 +3,7 @@ body {
     color: #fff;
     margin: auto;
     padding: 10px;
-    background-color: #21252d;
+    background-color: #250738;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -26,10 +26,24 @@ p {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-.title {
+.form-header {
     background-color: #8423ce;
     font-size: 18px;
-    padding: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.form-header img {
+  height: 40px;
+  width: 40px;
+}
+
+.form-header .title {
+  margin: 0px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .form-container {

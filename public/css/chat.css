@@ -32,12 +32,25 @@ button {
 
 .app-header {
     height: 60px;
-    padding: 18px 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     font-size: 20px;
     background-color: #8423ce;
     color: #fff;
     box-sizing: border-box;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+}
+
+.app-header img {
+  margin-top: 10px;
+  height: 40px;
+  width: 40px;
+}
+
+.app-header .title {
+  padding: 18px 5px;
 }
 
 .app-body {
