@@ -44,6 +44,7 @@ socket.on('message', message => {
 })
 
 socket.on('locationMessage', message => {
+  console.log('location meessage', message)
   const alignRight = message.username === username.trim().toLowerCase()
   const html = Mustache.render(locationTemplate, {
     messageClass: alignRight ? "message message-right" : "message",

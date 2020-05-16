@@ -143,6 +143,7 @@ button {
     padding: 15px 15px 5px;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.09);
     border-radius: 10px;
+    max-width: 85%;
 }
 
 .message-footer {

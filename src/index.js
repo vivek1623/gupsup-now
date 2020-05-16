@@ -6,9 +6,10 @@ const Filter = require('bad-words')
 
 const { generateTextMessage, generateLocationMessage } = require('./utils/messages')
 const { addUser, getUser, removeUser, getUsersByRoom } = require('./utils/users')
+const { SOCKET_EVENTS, DEFAULT_SENDER } = require('./config/constants')
 
 //to socket.io with express we need some different type of  refactoring
-//we needd to create server using http and express
+//we need to create server using http and express
 
 const app = express()
 const server = http.createServer(app)
@@ -20,44 +21,48 @@ const publicDirPath = path.join(__dirname, '../public')
 
 app.use(express.static(publicDirPath))
 
-io.on('connection', socket => {
-  socket.on('join', (options, callback) => {
+io.on(SOCKET_EVENTS.CONNECTION, socket => {
+  socket.on(SOCKET_EVENTS.JOIN, (options, callback) => {
     const { error, user } = addUser({ ...options, id: socket.id })
     if (error)
       return callback(error)
     if (user) {
       socket.join(user.room)
-      socket.emit('message', generateTextMessage(`Hey ${user.username}, Welcome to chat app`, 'Admin'))
-      socket.broadcast.to(user.room).emit('message', generateTextMessage(`${user.username} has joined`, 'Admin'))
-      io.to(user.room).emit('roomData', {
+      socket.emit(SOCKET_EVENTS.MESSAGE, generateTextMessage(`Hey ${user.username}, Welcome to gupsup now`, DEFAULT_SENDER))
+      socket.broadcast.to(user.room).emit(SOCKET_EVENTS.MESSAGE, generateTextMessage(`${user.username} has joined`, DEFAULT_SENDER))
+      io.to(user.room).emit(SOCKET_EVENTS.ROOM_DATA, {
         room: user.room,
         roomUsers: getUsersByRoom(user.room)
       })
     }
   })
 
-  socket.on('sendMessage', (message, callback) => {
+  socket.on(SOCKET_EVENTS.SEND_MESSAGE, (message, callback) => {
     const filter = new Filter()
     if (filter.isProfane(message))
       return callback('bad word is not allowed')
     const user = getUser(socket.id)
     if (user) {
-      io.to(user.room).emit('message', generateTextMessage(message, user.username))
+      io.to(user.room).emit(SOCKET_EVENTS.MESSAGE, generateTextMessage(message, user.username))
       callback('Message delivered!')
     }
   })
 
-  socket.on('sendLocation', (location, callback) => {
-    const url = `https://google.com/maps?q=${location.lat},${location.long}`
-    io.emit('locationMessage', generateLocationMessage(url, 'user'))
-    callback('location delivered successfully')
+  socket.on(SOCKET_EVENTS.SEND_LOCATION, (location, callback) => {
+    const user = getUser(socket.id)
+    if (user) {
+      const url = `https://google.com/maps?q=${location.lat},${location.long}`
+      const locationMessage = generateLocationMessage(url, user.username)
+      io.to(user.room).emit(SOCKET_EVENTS.LOCATION_MESSAGE, locationMessage)
+      callback('location delivered successfully')
+    }
   })
 
-  socket.on('disconnect', () => {
+  socket.on(SOCKET_EVENTS.DISCONNECT, () => {
     const user = removeUser(socket.id)
     if (user) {
-      io.to(user.room).emit('message', generateTextMessage(`${user.username} left the chatroom`, 'Admin'))
-      io.to(user.room).emit('roomData', {
+      io.to(user.room).emit(SOCKET_EVENTS.MESSAGE, generateTextMessage(`${user.username} left the chatroom`, DEFAULT_SENDER))
+      io.to(user.room).emit(SOCKET_EVENTS.ROOM_DATA, {
         room: user.room,
         roomUsers: getUsersByRoom(user.room)
       })
