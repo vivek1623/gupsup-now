@@ -67,6 +67,7 @@ button {
     overflow-x: hidden;
     color: #8423ce;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .sidebar-title {
@@ -91,8 +92,9 @@ button {
     flex: 1;
     position: relative;
     box-sizing: border-box;
-    padding-bottom: 70px;
+    padding-bottom: 90px;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .chat-body {

@@ -40,6 +40,7 @@ socket.on('message', message => {
     createdAt: message.createdAt
   })
   $messages.insertAdjacentHTML('beforeend', html)
+  $messages.scrollTop = $messages.scrollHeight
 })
 
 socket.on('locationMessage', message => {
@@ -53,11 +54,13 @@ socket.on('locationMessage', message => {
     createdAt: message.createdAt
   })
   $messages.insertAdjacentHTML('beforeend', html)
+  $messages.scrollTop = $messages.scrollHeight
 })
 
 $chatForm.addEventListener('submit', event => {
   event.preventDefault()
   const message = event.target.elements.message.value
+  $inputField.value = ""
   if (message.trim().length > 0)
     socket.emit('sendMessage', message, res => {
       if (res)
