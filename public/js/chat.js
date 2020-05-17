@@ -74,7 +74,9 @@ $inputField.addEventListener('focusin', () => {
 })
 
 $inputField.addEventListener('focusout', () => {
-  $locationBtn.style.display = 'block'
+  setTimeout(() => {
+    $locationBtn.style.display = 'block'
+  }, 1000);
 })
 
 $locationBtn.addEventListener('click', () => {
