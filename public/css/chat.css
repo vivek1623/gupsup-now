@@ -59,6 +59,7 @@ button {
   top: 20px;
   right: 20px;
   cursor: pointer;
+  color: red;
 }
 
 .app-body {
