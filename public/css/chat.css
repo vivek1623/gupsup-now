@@ -31,6 +31,7 @@ button {
 }
 
 .app-header {
+  position: relative;
     height: 60px;
     padding-left: 20px;
     padding-right: 20px;
@@ -51,6 +52,13 @@ button {
 
 .app-header .title {
   padding: 18px 5px;
+}
+
+.app-header .leave-chatroom {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
 }
 
 .app-body {
